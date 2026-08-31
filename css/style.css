@@ -1,16 +1,44 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css');
 
+:root {
+    /* Fundos */
+    --bg-defaut: #111127;
+    --bg-header: #28204f;
+    --bg-menu: #5b3fd1;
+    --bg-cards: #30265f;
+    --bg-footer: #19162e;
+
+    /* Destaques */
+    --color-primary: #9b87f5;
+    --color-secondary: #c4b5fd;
+    --color-price: #f4ce5e;
+
+    /* Textos */
+    --color-text: #f8f7ff;
+    --color-text-secondary: #d8d4e8;
+    --color-dark: #211b35;
+
+    /* Botões */
+    --bg-button: #f4ce5e;
+    --bg-button-hover: #ffdc75;
+
+    /* Bordas e sombras */
+    --color-border: #7768b8;
+    --color-shaddow: rgba(8, 6, 25, 0.45);
+    --color-card-shadow: rgba(155, 135, 245, 0.35);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/*Serve para que qualquer elemento venha com espaçamentos e margens padrão do navegador*/
+/* Serve para retirar os espaçamentos e margens padrão do navegador */
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #f5f5f5;
+    background-color: var(--bg-defaut);
 }
 
 #wrap {
@@ -19,15 +47,16 @@ body {
 
 /*
   =================================================
-  | Bloco para estilizar o conteúdo na ┼ header ┼ |
+  | Bloco para estilizar o conteúdo da header     |
   =================================================
 */
+
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-    background-color: white;
+    background-color: var(--bg-header);
 }
 
 .logotipo img {
@@ -40,17 +69,41 @@ header {
 
 .pesquisa {
     display: flex;
+    width: 100%;
 }
 
 .pesquisa input {
     width: 100%;
     padding: 10px;
-    border-radius: 15px 5px 15px 5px;
+
+    border: 1px solid var(--color-secondary);
+    border-radius: 8px 0 0 8px;
+    outline: none;
+
+    background-color: var(--color-text);
+    color: var(--color-dark);
+}
+
+.pesquisa input:focus {
+    border-color: var(--color-price);
 }
 
 .pesquisa button {
-    border-radius: 5px 15px 5px 15px;
-    padding: 10px 15px;
+    padding: 12px 18px;
+
+    border: none;
+    border-radius: 0 8px 8px 0;
+
+    background-color: var(--color-primary);
+    color: var(--color-text);
+
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pesquisa button:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-dark);
 }
 
 /*
@@ -58,9 +111,13 @@ header {
   | Bloco para estilizar o conteúdo de Navegação  |
   =================================================
 */
+
 .menu-principal {
     padding: 15px 20px;
-    background-color: #222;
+
+    background-color: var(--bg-menu);
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 2px 5px var(--color-shaddow);
 }
 
 .menu-principal ul {
@@ -73,17 +130,19 @@ header {
     display: flex;
     align-items: center;
     gap: 8px;
-    border: dotted 1px;
-    /*Somente para eu saber onde começa e termina*/
+
+    border: dotted 1px var(--color-secondary);
+    /* Somente para saber onde começa e termina */
 }
 
 .menu-principal a {
     text-decoration: none;
-    color: white;
+    color: var(--color-text);
     transition: color 0.3s;
 }
+
 .menu-principal a:hover {
-    color: #aaa;
+    color: var(--color-price);
 }
 
 /*
@@ -91,76 +150,212 @@ header {
   | Bloco para estilizar o conteúdo Principal     |
   =================================================
 */
+
 .produtos {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /*Coloque 3 colunas em 1 fração dos espaços(iguais) OBS.: o html ajusta a quebra de linha para baixo caso tenha mais de 1 produto*/
+
+    /* Coloca 3 colunas ocupando espaços iguais.
+       Caso existam mais produtos, eles passam
+       automaticamente para a próxima linha. */
+
     gap: 20px;
     padding: 20px;
 }
+
 /*
   ================================
-  | Bloco para estilizar os Card |
+  | Bloco para estilizar os Cards |
   ================================
 */
+
 .card {
-    border: 1px solid #ddd;
-    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
-    background-color: white;
-    box-shadow:  0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s box-shadow 0.3s;
+
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+
+    background-color: var(--bg-cards);
+    box-shadow: 0 2px 8px var(--color-shaddow);
+
+    transition: transform 0.3s, box-shadow 0.3s;
 }
+
 .card:hover {
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 20px var(--color-card-shadow);
     transform: translateY(-5px);
-    transition: all 0.3s ease;
 }
+
 .card img {
     width: 100%;
     display: block;
 }
+
 .card-info {
     padding: 15px;
 }
+
 .card-info h2 {
-    font-size: 20px;
     margin-bottom: 8px;
+
+    color: var(--color-text);
+    text-shadow: 0 1px 2px var(--color-shaddow);
+
+    font-size: 20px;
 }
+
 .descricao {
-    font-size: 14px;
-    color: #666;
     margin-bottom: 12px;
+
+    color: var(--color-text-secondary);
+    font-size: 14px;
 }
+
 .preco {
+    margin-bottom: 15px;
+
+    color: var(--color-price);
+    text-shadow: 0 2px 5px var(--color-shaddow);
+
     font-size: 22px;
     font-weight: bold;
-    margin-bottom: 15px;
 }
+
 .btn-comprar {
     width: 100%;
     padding: clamp(8px, 1.5vw, 14px);
-    font-size: clamp(12px, 2vw, 18px);/*nunca menor que 12px | cresce conforme a tela | nunca maior que 18px*/
-    
+
+    /* Nunca menor que 12px, cresce conforme
+       a tela e nunca fica maior que 18px. */
+
+    font-size: clamp(12px, 2vw, 18px);
+
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     border: none;
     border-radius: 0 10px 0 10px;
-    
-    background-color: #222;
-    color: white;
-    cursor: pointer;
 
+    background-color: var(--bg-button);
+    color: var(--color-dark);
+
+    cursor: pointer;
     transition: background-color 0.3s;
 }
 
 /*
   =================================================
-  | Bloco para estilizar os Cards, com hover      |
+  | Bloco para estilizar os botões com hover      |
   =================================================
 */
+
 .btn-comprar:hover {
-    background-color: #444;
+    background-color: var(--bg-button-hover);
+}
+
+/*
+  =================================================
+  | Bloco para estilizar o conteúdo do Footer     |
+  =================================================
+*/
+
+footer {
+    display: flex;
+    flex-wrap: wrap;
+
+    padding: 30px 20px;
+
+    background-color: var(--bg-footer);
+    color: var(--color-text);
+}
+
+.rodape-loja,
+.rodape-atendimento,
+.rodape-links {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.rodape-links a {
+    display: block;
+    margin-bottom: 8px;
+
+    color: var(--color-text-secondary);
+    text-decoration: none;
+
+    transition: color 0.3s;
+}
+
+.rodape-links a:hover {
+    color: var(--color-price);
+}
+
+.rodape-final {
+    width: 100%;
+
+    margin-top: 30px;
+    text-align: center;
+}
+
+/*
+  =================================================
+  | Bloco para lidar com responsividade           |
+  =================================================
+*/
+
+@media (max-width: 900px) {
+    .produtos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .produtos {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .barra-pesquisa {
+        width: 100%;
+    }
+
+    .logotipo img {
+        width: 100px;
+    }
+
+    .menu-principal {
+        padding: 10px;
+    }
+
+    .menu-principal ul {
+        justify-content: space-around;
+        gap: 10px;
+    }
+
+    .menu-principal a {
+        font-size: 14px;
+    }
+
+    .menu-principal li {
+        gap: 5px;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .rodape-final {
+        margin-top: 10px;
+    }
 }
